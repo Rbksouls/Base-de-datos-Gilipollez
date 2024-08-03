@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ejemplo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id="miFormulario" action="/submit" method="post">
+        <label for="checkbox1">
+            <input type="checkbox" id="checkbox1" name="checkbox1"> Checkbox 1
+        </label>
+        <label for="checkbox2">
+            <input type="checkbox" id="checkbox2" name="checkbox2"> Checkbox 2
+        </label>
+        <label for="textarea">Texto:</label>
+        <textarea id="textarea" name="textarea"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('miFormulario').addEventListener('submit', function(event) {
+            const checkbox1 = document.getElementById('checkbox1').checked;
+            const checkbox2 = document.getElementById('checkbox2').checked;
+            const textarea = document.getElementById('textarea').value.trim();
+
+            if (!checkbox1 && !checkbox2) {
+                alert('Debe seleccionar al menos un checkbox.');
+                event.preventDefault();
+                return;
+            }
+
+            if (textarea === '') {
+                alert('El campo de texto no puede estar vacío.');
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
