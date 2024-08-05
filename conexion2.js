@@ -17,13 +17,13 @@ app.get('/confirmacion', (req, res) => {
 });
 
 // Middleware para manejar el cuerpo de las solicitudes POST
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
 
 // Ruta para manejar el envío del formulario
 app.post('/submit', (req, res) => {
-    const { checkbox1, checkbox2, textarea } = req.body;
+    /* const { checkbox1, checkbox2, textarea } = req.body; */
 
-    // Validación en el lado del servidor
+    /* // Validación en el lado del servidor
     if (!checkbox1 && !checkbox2) {
         res.status(400).send('Debe seleccionar al menos un checkbox.');
         return;
@@ -32,7 +32,7 @@ app.post('/submit', (req, res) => {
     if (!textarea || textarea.trim() === '') {
         res.status(400).send('El campo de texto no puede estar vacío.');
         return;
-    }
+    } */
 
     // Si los datos son válidos, guardar en la base de datos
     
@@ -43,6 +43,4 @@ app.post('/submit', (req, res) => {
 // Iniciar el servidor
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
-}).close(()=>{
-    console.log("Sercer Cerrado")
-});
+})
