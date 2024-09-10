@@ -24,10 +24,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Renderizado de HTML
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
+  res.sendFile(path.join(__dirname, "public","index.html"));
 });
 app.get("/confirmacion", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/confirmacion.html"));
+  res.sendFile(path.join(__dirname, "public","confirmacion.html"));
 });
 
 //Envio de datos.
