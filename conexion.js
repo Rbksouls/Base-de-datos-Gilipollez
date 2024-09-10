@@ -10,9 +10,9 @@ const app = express();
 const port = 3000;
 //configuración de la base de datos
 const conf_db = mysql.createPool({
-  host: "localhost",
+  host: "https://pvtkfjrhogltmchkbvvg.supabase.co",
   user: "root",
-  password: "Estoesunabasededatos",
+  password: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2dGtmanJob2dsdG1jaGtidnZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU4OTEyNTYsImV4cCI6MjA0MTQ2NzI1Nn0.DLvpHj5lVruVBdxvnc5VEs6qA1PktBLNzbZ1x0lkwms",
   database: "gilipollez_db",
 });
 
