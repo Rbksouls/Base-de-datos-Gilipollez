@@ -1,9 +1,9 @@
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 const express = require("express");
-/* const { createClient } = require("@supabase/supabase-js"); */
+const { createClient } = require("@supabase/supabase-js");
 const body_parser = require("body-parser");
 const path = require("path");
-import { createClient } from '@supabase/supabase-js'
+
 
 const app = express();
 const port = process.env.PORT || 3060;
