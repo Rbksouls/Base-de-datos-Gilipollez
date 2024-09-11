@@ -1,4 +1,58 @@
-//Lo primero es crear un pack.json
+require('dotenv').config();
+const express = require("express");
+const { createClient } = require("@supabase/supabase-js");
+const body_parser = require("body-parser");
+const path = require("path");
+const helmet = require("helmet");
+
+const app = express();
+const port = process.env.PORT || 3060;
+
+app.use(helmet());
+
+// Configuración de Supabase
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+app.use(body_parser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/confirmacion", (req, res) => {
+  res.sendFile(path.join(__dirname, "confirmacion.html"));
+});
+
+app.post("/submit", async (req, res) => {
+  const checkbox1 = req.body.checkbox1 ? true : false;
+  const checkbox2 = req.body.checkbox2 ? true : false;
+  const mensaje = req.body.mensaje;
+
+  if (!checkbox1 && !checkbox2) {
+    return res.status(400).send("Debe seleccionar al menos un checkbox");
+  }
+
+  const { data, error } = await supabase
+    .from("gilipollez_table")
+    .insert([{ checkbox1, checkbox2, mensaje }]);
+
+  if (error) {
+    console.error("Error al insertar datos:", error);
+    return res.status(500).send("Error al enviar: " + error.message);
+  }
+
+  res.redirect("/confirmacion");
+});
+
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
+
+
+/* //Lo primero es crear un pack.json
 //\connect root@localhost:3306
 const express = require("express");
 const mysql = require("mysql2");
@@ -134,3 +188,4 @@ app.listen(port, () => {
     console.log(`Server running on port http://localhost:${port}`);
 });
  */
+ 
