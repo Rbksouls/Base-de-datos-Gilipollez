@@ -3,12 +3,10 @@ const express = require("express");
 const { createClient } = require("@supabase/supabase-js");
 const body_parser = require("body-parser");
 const path = require("path");
-const helmet = require("helmet");
 
 const app = express();
 const port = process.env.PORT || 3060;
 
-app.use(helmet());
 
 // Configuración de Supabase
 const supabaseUrl = process.env.SUPABASE_URL;
